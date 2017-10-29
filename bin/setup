@@ -27,3 +27,10 @@ mkdir -p ${OPENSHIFT_JBOSSAS_DIR}/versions/7/{template,standalone/tmp,standalone
 #fi
 
 #[ -f "/opt/repo/.bash_profile" ] && cp /opt/repo/.bash_profile /opt/repo/home/
+
+JAVA_BINARIES=$(find /usr/java/* -name java) 
+
+for i in ${JAVA_BINARIES}
+do
+     setcap 'cap_net_bind_service=+ep' ${i}
+done
